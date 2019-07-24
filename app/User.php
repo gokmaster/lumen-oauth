@@ -13,13 +13,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use HasApiTokens, Authenticatable, Authorizable;
 
+    // Set a table name in database
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email', 'password'
     ];
 
     /**
