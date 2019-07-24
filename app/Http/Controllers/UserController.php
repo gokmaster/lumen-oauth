@@ -92,9 +92,15 @@ class UserController extends Controller
         return response()->json($response);
     }
 
+    public function getUserDetils($user_id) {
+        return User::select('name', 'email', 'created_at')->where('id', $user_id)->first();
+    }
+
     // Returns auth token if authentication is successful
     private function getAuthToken($email, $password) {
-        $client = Oauthclient::select('id', 'secret')->where(DB::raw("TRIM(name)"), "Password Grant Client")->first();
+        $client = Oauthclient::select('id', 'secret')
+                    ->where(DB::raw("TRIM(name)"), "Password Grant Client")
+                    ->first();
 
         $params = [
             'grant_type' => 'password',
