@@ -19,6 +19,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     $router->post('register','UserController@create');
+    $router->post('login','UserController@login');
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('/element', 'ElementController');
