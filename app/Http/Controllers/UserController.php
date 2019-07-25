@@ -12,7 +12,6 @@ class UserController extends Controller
 {
     public function create(Request $request)
     {
-        $response = [];
         try {
             $this->validate($request, [
                 'name' => 'required',
@@ -51,7 +50,6 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $response = [];
         try {
             $this->validate($request, [
                 'email' => 'required|email',
