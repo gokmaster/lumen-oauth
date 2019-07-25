@@ -47,6 +47,7 @@ The first one is Personal Access Client and second one is Password Grant Client.
 The Password Grant Client will allow us to generate new tokens for users.
 
 ### Testing the API
+The **test-with-postman.pdf** file located in this repository provides examples with screenshots on how to test this API. The steps are also discussed in the following sections below:
 
 #### Register User
 Using Postman, send a **POST** request to `{{url}}/api/register` with following **form-data** in **Body**:
@@ -79,14 +80,14 @@ You should get a response like the one below if login was successful:
 {
     "message": "Login successful",
     "user-details": {
-        "name": "Mark",
-        "email": "mark@test.com"
+        "name": "mike",
+        "email": "mike@test.com"
     },
     "auth": {
         "token_type": "Bearer",
         "expires_in": 31622400,
-        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijc2OTMzMzU3MzFhMTdjMDlkYWI2ZmUwNmE4N2M0MTdkZTU2ODQxOWI1OTk1YWI3NGNlYmIyZTQxZTdiYWJiNzQ2ZDM5NjRiMDhhMDdkYWE5In0.eyJhdWQiOiIyIiwianRpIjoiNzY5MzMzNTczMWExN2MwOWRhYjZmZTA2YTg3YzQxN2RlNTY4NDE5YjU5OTVhYjc0Y2ViYjJlNDFlN2JhYmI3NDZkMzk2NGIwOGEwN2RhYTkiLCJpYXQiOjE1NjQwMzEyMTMsIm5iZiI6MTU2NDAzMTIxMywiZXhwIjoxNTk1NjUzNjEzLCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.QuISFTMivMiceLhQECLDwzutnFPvfIfUqBJ5aAOWissVqK1biPcNkL_ceC2piLt6CZUpnxOwNNaSwTan0IRDS-5pUUeEZEZfOYUZzM-WQ6SPFHEIsg2Td6RvUIDxQtp8L8nhHAF9cO83taEDZX6bxga9UEUU3hnFodK5qdmIn0gHzdyhSJQ002lJGLK8uUn_0IvXLOZuL6_X01OWCQYOpDtzGvVb-rh3yhJM2jo2lRarwYEnRueLMyaKEORGtUlwCh-_OdiXnUn2qp4pU1czjD3rJ0nA-ZnZE3c27ZEYhjD1kgJ5_Iaw0pkxELzgqo53JzS9c88xZDNLYPgkHnNau2GyQvdZiZrpFvc2EZX4gwI6b2YxTDAWFqEBYfKZWSli6FOG1nYpavRd_nsp_mq9o8VtAbwEdqfXTqJoL85VJRscF78YV7OSptneymYje_vDAGZZHOPQ8OGNLdcsGucDC1-pDdyL8Bhl5TAYn4R_UjucNmTtY93WYuz2guN0Um2HITCHBbhvxyQmTBL4TRhjLoMO-Ic7rEyGP3R8nLrp8i0PRcySFhGwVbC2pRZi_QZsIowbksmce2I_QCO-wuFE_5CrBXiJfikNZfxgFC-YAzBf02aoaHpqbHNeF-0Be4ocAKCIZJdtgOzMHgBORVdeo03ZuZ8hhHTdlqbN6Ow88p0",
-        "refresh_token": "def50200a0fdf697ed3b41c3e82b94d724c1f736daadec47fa723d29c2c7b7ea873637a506b26bcca1544b373ef9e7b3d98c7a00dbdd6fd3d0c5a172110d25a1a551fbff5e1b50029da972bb511c0c6ba2123667af21f0b325b603de69784d3474ad1ed1e48f59d0fec3b909b3818f31ca0413b584294005704150f127aa4b545a8c3196e2c35e33c4aeabde124b58a935428d675a561cab0da89914801db9983f0f2bdab4ef821c41034c2dc2ced696e1863c1ba96c5731d65eec60f4946a0342f86d85a843ac08c62e28dd5541b02943fd53f223b08f36ac83c23fdf0e0fe8f6e7fd9a5cef58ec1142404aa9cea26f145732f24e322a1bd43182a289088d62736cc5fcbfdd3a01c7d930e4e1a74e155ecc0294858cb90850a0b82550553a8f580cd2d33ef08d6399d8cc90fc0346361387e8b6e9048661f507d9127c6e425f2d0e25465cc45c4710eb9738d1813a04292564aa5e3b1efc71f8f0148119c21fdb0d"
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJjYmYwMGJmZWRhNjcyNjI3MjE5Yjk2Y2VmYzc4YjhlYTg1MTQ5MjliNjM1NmRjNWUzYmIyMjYzOTViZDMwMmIxYmUxZDc2ZmZhMTc4Mzg2In0.eyJhdWQiOiIyIiwianRpIjoiMmNiZjAwYmZlZGE2NzI2MjcyMTliOTZjZWZjNzhiOGVhODUxNDkyOWI2MzU2ZGM1ZTNiYjIyNjM5NWJkMzAyYjFiZTFkNzZmZmExNzgzODYiLCJpYXQiOjE1NjQwMzk1NzksIm5iZiI6MTU2NDAzOTU3OSwiZXhwIjoxNTk1NjYxOTc5LCJzdWIiOiIxMCIsInNjb3BlcyI6WyIqIl19.be1LvjKitEhvHHEmPYIze-czylWI3v1fwNxWd0j5TUUvCVu9yD3rg3wtvv0kWNtCo5wOnfz04Qtsvuxx6VPT72lDG00vyjcgP3sH53JbW_7_wyOQSQiYvCSk8zlHF_KttyTL_G5kA0ULZAPODglU4LWxmx82iFXi3-p2HjZsSHyTmFFylYcVpQ5PaUMPOaiKvkNx93wpgo_dY2wY68in7loEv0WtoA0D0ukbbRncieC0UjkX-86Px2pitMK0Y9Umbp-_v9aXtEjgzvqPZF8IgHgveedcIUfX4VMX-84PDG7kCZm_UJcCi9a93WrmfAt2l1F-Bml5u76U4ly_jERt9YdQMxs674KB7MY_8Jx_8-ktMda69SQ6KnEudS5NPiFqb6RhfYUYzURH2ZwU1vRaMrT48FpafuHJ_3rcN49Icza6Xf-jbuqEFcTB1xnAagik8L34nJFwzLHYWMMHFIcGIXapoVuEl_GWmkWMX9btcfNHYQu9cGZFTMWGCSK4EWuZJ9amJPkNZBnEDYA2Ou8PVmJQXMHMrCYcOvHNIgrXvmE_nLhFOgz-cwVCyflIS1e5oqt9HlZ8avH3CVYKlFNJJkwRsDW6d7kcmmlSNL8_su7SypzTltP78G9T-dkYqAjJa4t7Kd96OyUm_Wx_DtsotJpya4fRdUkPhsANyblCBcA",
+        "refresh_token": "def50200b3b0ea5dc930a3fe606e582a1ab10682f297878c13d6296c134d6712c69e9cba2a01eac676950057ec4dce1adbe66bf36ff5aa2b66d405d59c66563652eeaa4cca6f458455930835ef2ff9e4502c0ecd0d371a92961ff626c59e0b4226d449772f7a14df416fee4c5e136d1cd6f08ed28e83fc60a878aa43437d718918b881450e329cfa453b492bdc2586ec095c68003fdae587a7892796c813355c455d8668e2ecbf5dbe148f32788fcb1d9eebae3e6a7499c044a5af8b0e2db8efc93ce7f203ec47a0c0e7a361b3453225b699017ce78fa6f3f01f589a49134e1fd585904983900b779043c6b55fce182a320d4245b7ea24a0db5d509674b598242d04e0fee721353ca43025c4bbe4cf50212b4f321de71bd042e83a7db7202a15a7f77eb3b1369e4f8018f4c6091f5bfbc01dec6703a79511232847431b7ce0ef2b6a9eba09c2499320459a1115e1966e5c70eede22727c4e31e639f919415e83202bb2"
     }
 }
 ```
@@ -102,8 +103,9 @@ You should get a response like the one below if access-token was verified succes
 
 ```json
 {
-    "name": "Mark",
-    "email": "mark@test.com",
-    "created_at": "2019-07-23 15:55:20"
+    "name": "mike",
+    "email": "mike@test.com",
+    "created_at": "2019-07-25 07:11:20"
 }
 ```
+
