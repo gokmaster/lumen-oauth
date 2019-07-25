@@ -61,7 +61,6 @@ You should get following response if registration was successful:
 
 ```json
 {
-    "status": "success",
     "message": "User registration successful"
 }
 ```
@@ -78,7 +77,6 @@ You should get a response like the one below if login was successful:
 
 ```json
 {
-    "status": "success",
     "message": "Login successful",
     "user-details": {
         "name": "Mark",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 use App\Oauthclient;
 use App\User;
 
@@ -13,48 +14,50 @@ class UserController extends Controller
     {
         $response = [];
         try {
-            $name =  $request->input('name');
-            $email =  $request->input('email');
-            $password = $request->input('password');
-
-            $emailCount = User::where('email', $email)->count();
-
-            if ( $emailCount > 0 ) {
-                throw new \Exception( "The following email address already exist: $email" ); 
-            }
-
-            if (strlen($password) < 4) {
-                throw new \Exception( "Password should be atleast 4 characters in length." ); 
-            }
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:4'
+            ]);
 
             $data = [
-                'name' => $name,
-                'email' => $email,
-                'password' => password_hash($password, PASSWORD_BCRYPT),
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => password_hash($request->input('password'), PASSWORD_BCRYPT),
             ];
 
             User::create($data);
                 
             $response = [
-                'status' => "success",
                 'message' => 'User registration successful',
-            ];    
-        }
-        catch(\Exception $e) {
+            ]; 
+            return (new Response($response, 200));
+
+        } catch (\Illuminate\Validation\ValidationException $e ) {
+            // When there is any invalid input
+            $response = [
+                'message' => $e->errors(),
+            ];
+            return (new Response($response, 400));
+
+        } catch(\Exception $e) {
             // When query fails. 
             $response = [
-                'status' => "failed",
                 'message' => $e->getMessage(),
             ];
+            return (new Response($response, 500));
         }
-
-        return response()->json($response);
     }
 
     public function login(Request $request)
     {
         $response = [];
         try {
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+
             $email =  $request->input('email');
             $password = $request->input('password');
 
@@ -69,27 +72,32 @@ class UserController extends Controller
                 throw new \Exception( "Invalid password." ); 
             } 
 
-            $userDetails = User::select('name', 'email')->where('email', $email)->first();
-
             // get auth token if authentication is successful
             $authResponse = $this->getAuthToken($email, $password);
 
+            $userDetails = User::select('name', 'email')->where('email', $email)->first();
+
             $response = [
-                'status' => "success",
                 'message' => 'Login successful',
                 'user-details' => $userDetails,
                 'auth' => json_decode($authResponse, true),
             ];    
-        }
-        catch(\Exception $e) {
+            return (new Response($response, 200));
+
+        } catch (\Illuminate\Validation\ValidationException $e ) {
+            // When there is any invalid input
+            $response = [
+                'message' => $e->errors(),
+            ];
+            return (new Response($response, 400));
+
+        } catch(\Exception $e) {
             // When query fails. 
             $response = [
-                'status' => "failed",
                 'message' => $e->getMessage(),
             ];
+            return (new Response($response, 500));
         }
-
-        return response()->json($response);
     }
 
     public function getUserDetils($user_id) {
