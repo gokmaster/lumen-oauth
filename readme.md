@@ -94,7 +94,7 @@ You should get a response like the one below if login was successful:
 ```
 
 #### Get User Details
-Using Postman, send a GET request to `{{url}}/api/users/{{user_id}}` with following key-values in **Headers**:
+Using Postman, send a **GET** request to `{{url}}/api/users/{{user_id}}` with following key-values in **Headers**:
 
 ```
 authorization = Bearer your-access-token-from-user-login
