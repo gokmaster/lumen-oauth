@@ -59,8 +59,7 @@ class UserController extends Controller
             $email =  $request->input('email');
             $password = $request->input('password');
 
-            $emailCount = User::where('email', $email)->count();
-            if ( $emailCount == 0 ) {
+            if (!User::where('email', $email)->exists()) {
                 throw new \Exception( "The email address, $email does not exist." ); 
             }
 
